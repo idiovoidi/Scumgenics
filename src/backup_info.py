@@ -14,4 +14,8 @@ class BackupInfo:
     
     def display_name(self) -> str:
         """Return formatted display name for UI."""
-        return f"{self.timestamp.strftime('%Y-%m-%d %H:%M')} ({self.size_bytes // 1024} KB)"
+        # Format: "Jan 15, 2024  2:30 PM  •  123 KB"
+        date_str = self.timestamp.strftime('%b %d, %Y')
+        time_str = self.timestamp.strftime('%I:%M %p').lstrip('0')
+        size_kb = self.size_bytes // 1024
+        return f"{date_str}  {time_str}  •  {size_kb} KB"

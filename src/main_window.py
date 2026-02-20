@@ -4,9 +4,11 @@ import os
 import subprocess
 from typing import List, Optional
 from PyQt6.QtWidgets import (
-    QMainWindow, QWidget, QVBoxLayout, QListWidget, 
-    QPushButton, QLabel, QMessageBox, QTabWidget, QDialog
+    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QListWidget, 
+    QPushButton, QLabel, QMessageBox, QTabWidget, QDialog, QFrame
 )
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 
 from src.save_manager import SaveManager
 from src.backup_info import BackupInfo
@@ -29,13 +31,15 @@ class MainWindow(QMainWindow):
         logger.info("Initializing MainWindow")
         self.save_manager = save_manager
         
-        # Set window title
+        # Set window title and size
         self.setWindowTitle("Scumgenics")
+        self.setMinimumSize(600, 500)
         
         # Create central widget and tab widget
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
+        main_layout.setContentsMargins(0, 0, 0, 0)
         
         # Create tab widget
         self.tabs = QTabWidget()
@@ -44,56 +48,121 @@ class MainWindow(QMainWindow):
         # Create Backups tab
         backups_tab = QWidget()
         backups_layout = QVBoxLayout(backups_tab)
+        backups_layout.setContentsMargins(15, 15, 15, 15)
+        backups_layout.setSpacing(10)
         
-        # Create QListWidget for backup list display
+        # Add header label
+        header_label = QLabel("Available Backups")
+        header_font = QFont()
+        header_font.setPointSize(11)
+        header_font.setBold(True)
+        header_label.setFont(header_font)
+        backups_layout.addWidget(header_label)
+        
+        # Create QListWidget for backup list display with improved styling
         self.backup_list = QListWidget()
+        self.backup_list.setAlternatingRowColors(True)
+        self.backup_list.setSpacing(2)
+        # Set a monospace-like font for better alignment
+        list_font = QFont("Segoe UI", 10)
+        self.backup_list.setFont(list_font)
         backups_layout.addWidget(self.backup_list)
         
+        # Create button container with horizontal layout
+        button_container = QHBoxLayout()
+        button_container.setSpacing(10)
+        
         # Create QPushButton for "Restore" (initially disabled)
-        self.restore_button = QPushButton("Restore")
+        self.restore_button = QPushButton("Restore Selected")
         self.restore_button.setEnabled(False)
-        backups_layout.addWidget(self.restore_button)
+        self.restore_button.setMinimumHeight(35)
+        button_container.addWidget(self.restore_button)
         
         # Create QPushButton for "Create Local Backup"
-        self.create_backup_button = QPushButton("Create External Backup")
-        backups_layout.addWidget(self.create_backup_button)
+        self.create_backup_button = QPushButton("Create Backup")
+        self.create_backup_button.setMinimumHeight(35)
+        button_container.addWidget(self.create_backup_button)
+        
+        backups_layout.addLayout(button_container)
+        
+        # Add separator line
+        separator = QFrame()
+        separator.setFrameShape(QFrame.Shape.HLine)
+        separator.setFrameShadow(QFrame.Shadow.Sunken)
+        backups_layout.addWidget(separator)
         
         # Create QPushButton for "Launch Game"
-        self.launch_game_button = QPushButton("Launch Game")
+        self.launch_game_button = QPushButton("🎮 Launch Mewgenics")
+        self.launch_game_button.setMinimumHeight(40)
         self.launch_game_button.clicked.connect(self.on_launch_game_clicked)
+        launch_font = QFont()
+        launch_font.setPointSize(10)
+        self.launch_game_button.setFont(launch_font)
         backups_layout.addWidget(self.launch_game_button)
-        
-        # Create QLabel for status messages
-        self.status_label = QLabel("")
-        backups_layout.addWidget(self.status_label)
         
         self.tabs.addTab(backups_tab, "Backups")
         
         # Create Options tab
         options_tab = QWidget()
         options_layout = QVBoxLayout(options_tab)
+        options_layout.setContentsMargins(15, 15, 15, 15)
+        options_layout.setSpacing(15)
+        
+        # Settings header
+        settings_header = QLabel("Settings")
+        settings_font = QFont()
+        settings_font.setPointSize(11)
+        settings_font.setBold(True)
+        settings_header.setFont(settings_font)
+        options_layout.addWidget(settings_header)
         
         # Current path display
+        path_section = QLabel("Save Folder Location")
+        path_section_font = QFont()
+        path_section_font.setBold(True)
+        path_section.setFont(path_section_font)
+        options_layout.addWidget(path_section)
+        
         self.current_path_label = QLabel()
+        self.current_path_label.setWordWrap(True)
         self._update_path_label()
         options_layout.addWidget(self.current_path_label)
         
         # Game executable display
+        exe_section = QLabel("Game Executable")
+        exe_section.setFont(path_section_font)
+        options_layout.addWidget(exe_section)
+        
         self.game_exe_label = QLabel()
+        self.game_exe_label.setWordWrap(True)
         self._update_game_exe_label()
         options_layout.addWidget(self.game_exe_label)
         
         # Options button
         self.options_button = QPushButton("Change Settings...")
+        self.options_button.setMinimumHeight(35)
         self.options_button.clicked.connect(self.on_options_clicked)
         options_layout.addWidget(self.options_button)
         
+        # Add separator
+        options_separator = QFrame()
+        options_separator.setFrameShape(QFrame.Shape.HLine)
+        options_separator.setFrameShadow(QFrame.Shadow.Sunken)
+        options_layout.addWidget(options_separator)
+        
+        # Backup folder section
+        backup_section = QLabel("Backup Folder")
+        backup_section.setFont(path_section_font)
+        options_layout.addWidget(backup_section)
+        
         # Local backup folder section
-        local_backup_label = QLabel(f"\nLocal Backup Folder:\n{self.save_manager.get_local_backup_directory().absolute()}")
+        local_backup_label = QLabel(f"{self.save_manager.get_local_backup_directory().absolute()}")
+        local_backup_label.setWordWrap(True)
         options_layout.addWidget(local_backup_label)
         
         # Open backup folder button
         self.open_backup_folder_button = QPushButton("Open Backup Folder")
+        self.open_backup_folder_button.setMinimumHeight(35)
         self.open_backup_folder_button.clicked.connect(self.on_open_backup_folder_clicked)
         options_layout.addWidget(self.open_backup_folder_button)
         
@@ -219,17 +288,17 @@ class MainWindow(QMainWindow):
     def _update_path_label(self):
         """Update the current path label."""
         if self.save_manager.config.custom_save_folder:
-            path_text = f"Current Save Folder: {self.save_manager.config.custom_save_folder}"
+            path_text = f"{self.save_manager.config.custom_save_folder}"
         else:
-            path_text = f"Current Save Folder: Auto-detected\n{self.save_manager.get_main_save_path().parent}"
+            path_text = f"{self.save_manager.get_main_save_path().parent}\n(Auto-detected)"
         self.current_path_label.setText(path_text)
     
     def _update_game_exe_label(self):
         """Update the game executable label."""
         if self.save_manager.config.game_executable_path:
-            exe_text = f"\nGame Executable: {self.save_manager.config.game_executable_path}"
+            exe_text = f"{self.save_manager.config.game_executable_path}"
         else:
-            exe_text = "\nGame Executable: Not configured"
+            exe_text = "Not configured"
         self.game_exe_label.setText(exe_text)
     
     def _update_launch_button_state(self):
