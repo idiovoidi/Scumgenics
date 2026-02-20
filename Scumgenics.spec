@@ -6,16 +6,12 @@ Build instructions:
     pyinstaller Scumgenics.spec
 
 Output:
-    dist/Scumgenics.exe - Standalone executable
+    dist/Scumgenics.exe - Standalone executable (optimized for size)
 """
 
-from PyInstaller.utils.hooks import collect_data_files, collect_submodules
 import os
 
 block_cipher = None
-
-# Collect all PyQt6 submodules to ensure GUI works properly
-pyqt6_hiddenimports = collect_submodules('PyQt6')
 
 a = Analysis(
     ['main.py'],
@@ -37,14 +33,16 @@ a = Analysis(
         'src.save_manager_config',
         'src.settings',
         'src.options_dialog',
-        # PyQt6 modules
-        *pyqt6_hiddenimports,
+        # Only include PyQt6 modules we actually use
+        'PyQt6.QtCore',
+        'PyQt6.QtGui',
+        'PyQt6.QtWidgets',
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        # Exclude test dependencies to reduce size
+        # Exclude test dependencies
         'pytest',
         'pytest-qt',
         'pytest-mock',
@@ -52,6 +50,51 @@ a = Analysis(
         'coverage',
         '_pytest',
         'py.test',
+        # Exclude unused PyQt6 modules (big size savings)
+        'PyQt6.QtNetwork',
+        'PyQt6.QtOpenGL',
+        'PyQt6.QtOpenGLWidgets',
+        'PyQt6.QtPrintSupport',
+        'PyQt6.QtQml',
+        'PyQt6.QtQuick',
+        'PyQt6.QtQuickWidgets',
+        'PyQt6.QtSql',
+        'PyQt6.QtSvg',
+        'PyQt6.QtSvgWidgets',
+        'PyQt6.QtTest',
+        'PyQt6.QtWebChannel',
+        'PyQt6.QtWebEngine',
+        'PyQt6.QtWebEngineCore',
+        'PyQt6.QtWebEngineWidgets',
+        'PyQt6.QtXml',
+        'PyQt6.Qt3DCore',
+        'PyQt6.Qt3DRender',
+        'PyQt6.Qt3DInput',
+        'PyQt6.Qt3DLogic',
+        'PyQt6.Qt3DExtras',
+        'PyQt6.Qt3DAnimation',
+        'PyQt6.QtBluetooth',
+        'PyQt6.QtDBus',
+        'PyQt6.QtDesigner',
+        'PyQt6.QtHelp',
+        'PyQt6.QtMultimedia',
+        'PyQt6.QtMultimediaWidgets',
+        'PyQt6.QtNfc',
+        'PyQt6.QtPositioning',
+        'PyQt6.QtRemoteObjects',
+        'PyQt6.QtSensors',
+        'PyQt6.QtSerialPort',
+        'PyQt6.QtTextToSpeech',
+        # Exclude other unnecessary modules
+        'tkinter',
+        'matplotlib',
+        'numpy',
+        'pandas',
+        'scipy',
+        'PIL',
+        'IPython',
+        'jupyter',
+        'notebook',
     ],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
