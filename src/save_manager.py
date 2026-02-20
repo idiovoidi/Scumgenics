@@ -45,27 +45,36 @@ class SaveManager:
         self.file_ops = FileOperations()
     
     def _detect_username(self) -> str:
-        """Detect and return the current Windows username.
+        """Detect and return the current Windows username from the user profile path.
         
         Returns:
-            The current Windows username
+            The current Windows username (extracted from USERPROFILE path)
             
         Raises:
             RuntimeError: If username cannot be detected
         """
+        # Use USERPROFILE to get the actual profile folder name
+        # This handles cases where USERNAME env var differs from the profile folder
+        # (e.g., display name vs actual profile folder name)
+        userprofile = os.environ.get('USERPROFILE')
+        if userprofile:
+            username = Path(userprofile).name
+            logger.debug(f"Username detected from USERPROFILE path: {username}")
+            return username
+        
+        # Fall back to os.getlogin()
         try:
-            # Try os.getlogin() first
             username = os.getlogin()
             logger.debug(f"Username detected via os.getlogin(): {username}")
             return username
         except (OSError, AttributeError) as e:
-            logger.warning(f"os.getlogin() failed: {str(e)}, trying environment variable")
-            # Fall back to environment variable
+            logger.warning(f"os.getlogin() failed: {str(e)}, trying USERNAME environment variable")
+            # Last resort: environment variable
             username = os.environ.get('USERNAME')
             if username:
-                logger.debug(f"Username detected via environment variable: {username}")
+                logger.debug(f"Username detected via USERNAME environment variable: {username}")
                 return username
-            logger.error("Failed to detect username via os.getlogin() or USERNAME environment variable")
+            logger.error("Failed to detect username via USERPROFILE, os.getlogin(), or USERNAME")
             raise RuntimeError("Unable to detect Windows username")
 
     def get_main_save_path(self) -> Path:
