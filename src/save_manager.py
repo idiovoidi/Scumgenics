@@ -1,5 +1,6 @@
 """SaveManager class for orchestrating save file operations."""
 import os
+import subprocess
 import logging
 from pathlib import Path
 from typing import List, Optional
@@ -173,7 +174,10 @@ class SaveManager:
         
         try:
             logger.info(f"Launching game: {self.config.game_executable_path}")
-            os.startfile(self.config.game_executable_path)
+            # Use subprocess.Popen to launch the executable without blocking
+            subprocess.Popen([str(self.config.game_executable_path)], 
+                           cwd=str(self.config.game_executable_path.parent))
+            logger.info("Game process started successfully")
             return Result.ok("Game launched successfully")
         except Exception as e:
             logger.error(f"Failed to launch game: {e}")

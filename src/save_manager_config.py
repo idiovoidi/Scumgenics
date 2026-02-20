@@ -13,5 +13,4 @@ class SaveManagerConfig:
     local_backup_directory: Path
     custom_save_folder: Optional[Path] = None  # User-specified custom save folder path
     game_executable_path: Optional[Path] = None  # Path to game executable
-    custom_save_folder: Optional[Path] = None  # User-specified custom save folder path
 

@@ -60,6 +60,7 @@ class MainWindow(QMainWindow):
         
         # Create QPushButton for "Launch Game"
         self.launch_game_button = QPushButton("Launch Game")
+        self.launch_game_button.clicked.connect(self.on_launch_game_clicked)
         backups_layout.addWidget(self.launch_game_button)
         
         # Create QLabel for status messages
@@ -77,8 +78,13 @@ class MainWindow(QMainWindow):
         self._update_path_label()
         options_layout.addWidget(self.current_path_label)
         
+        # Game executable display
+        self.game_exe_label = QLabel()
+        self._update_game_exe_label()
+        options_layout.addWidget(self.game_exe_label)
+        
         # Options button
-        self.options_button = QPushButton("Change Save Folder...")
+        self.options_button = QPushButton("Change Settings...")
         self.options_button.clicked.connect(self.on_options_clicked)
         options_layout.addWidget(self.options_button)
         
@@ -100,7 +106,9 @@ class MainWindow(QMainWindow):
         self.backup_list.itemSelectionChanged.connect(self._on_selection_changed)
         self.restore_button.clicked.connect(self.on_restore_clicked)
         self.create_backup_button.clicked.connect(self.on_create_backup_clicked)
-        self.launch_game_button.clicked.connect(self.on_launch_game_clicked)
+        
+        # Update launch button state based on executable configuration
+        self._update_launch_button_state()
         
         logger.debug("MainWindow initialization complete")
     
@@ -216,6 +224,21 @@ class MainWindow(QMainWindow):
             path_text = f"Current Save Folder: Auto-detected\n{self.save_manager.get_main_save_path().parent}"
         self.current_path_label.setText(path_text)
     
+    def _update_game_exe_label(self):
+        """Update the game executable label."""
+        if self.save_manager.config.game_executable_path:
+            exe_text = f"\nGame Executable: {self.save_manager.config.game_executable_path}"
+        else:
+            exe_text = "\nGame Executable: Not configured"
+        self.game_exe_label.setText(exe_text)
+    
+    def _update_launch_button_state(self):
+        """Update the launch game button enabled state."""
+        has_exe = self.save_manager.config.game_executable_path is not None
+        self.launch_game_button.setEnabled(has_exe)
+        if not has_exe:
+            self.launch_game_button.setToolTip("Configure game executable in Options tab")
+    
     def on_options_clicked(self):
         """Handle options button click."""
         dialog = OptionsDialog(
@@ -231,15 +254,27 @@ class MainWindow(QMainWindow):
             # Update game executable path
             game_exe_path = dialog.get_game_exe_path()
             self.save_manager.set_game_executable_path(game_exe_path)
+            self._update_game_exe_label()
+            self._update_launch_button_state()
             
             # Refresh backup list with new path
             self._refresh_backup_list()
             
             # Show confirmation
+            messages = []
             if custom_path:
-                self.display_success(f"Save folder updated to:\n{custom_path}")
+                messages.append(f"Save folder updated to:\n{custom_path}")
             else:
-                self.display_success("Save folder reset to auto-detect")
+                messages.append("Save folder reset to auto-detect")
+            
+            if game_exe_path:
+                messages.append(f"Game executable set to:\n{game_exe_path}")
+            elif dialog.exe_input.text().strip() == "" and self.save_manager.config.game_executable_path is None:
+                pass  # No change
+            else:
+                messages.append("Game executable cleared")
+            
+            self.display_success("\n\n".join(messages))
     
     def on_open_backup_folder_clicked(self):
         """Handle open backup folder button click."""

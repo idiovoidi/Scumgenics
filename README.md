@@ -7,6 +7,8 @@ A desktop save manager application for the game Mewgenics. Manage, backup, and r
 - **Automatic Save Detection**: Automatically finds your Mewgenics save files based on your Windows username
 - **Backup Management**: View and restore timestamped backup saves
 - **Local Backups**: Create additional backup copies within the application directory
+- **Game Launcher**: Quick launch Mewgenics after swapping saves
+- **Custom Save Paths**: Configure custom save folder locations
 - **Cross-User Support**: Works on any Windows user account without configuration
 
 ## Requirements
@@ -52,8 +54,30 @@ The application window will open showing your available backup saves.
    - The selected backup will replace your current save file
 
 3. **Create Local Backup**:
-   - Click the "Create Local Backup" button
+   - Click the "Create External Backup" button
    - A timestamped copy of your current save will be created in the `backups/` directory
+
+4. **Launch Game**:
+   - Click the "Launch Game" button to start Mewgenics
+   - Note: You must configure the game executable path first (see Options below)
+
+### Options
+
+Access the Options tab to configure:
+
+1. **Custom Save Folder**:
+   - Click "Browse..." to select a custom save folder location
+   - Useful if your saves are in a non-standard location
+   - Leave empty to use automatic detection
+
+2. **Game Executable Path**:
+   - Click "Browse..." next to "Game Executable Path"
+   - Select your Mewgenics.exe file
+   - Once configured, you can use the "Launch Game" button on the Backups tab
+   - The Launch Game button will be disabled until you set this path
+
+3. **Open Backup Folder**:
+   - Quickly open the local backup directory in Windows Explorer
 
 ### Backup Directory Locations
 
