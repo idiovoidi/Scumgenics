@@ -10,6 +10,7 @@ from src.path_builder import PathBuilder
 from src.file_operations import FileOperations
 from src.backup_info import BackupInfo
 from src.result import Result
+from src.settings import Settings
 
 logger = logging.getLogger("scumgenics.save_manager")
 
@@ -19,13 +20,23 @@ class SaveManager:
     
     def __init__(self):
         """Initialize save manager with path configuration."""
+        # Load custom save folder from settings
+        custom_save_folder = Settings.load_custom_save_folder()
+        game_executable_path = Settings.load_game_executable_path()
+        
         # Detect username using os.getlogin() or os.environ['USERNAME']
         username = self._detect_username()
         logger.info(f"Detected username: {username}")
         
-        # Construct paths using PathBuilder
-        main_save_path = PathBuilder.build_main_save_path(username)
-        backup_directory = PathBuilder.build_backup_directory_path(username)
+        # Construct paths using PathBuilder or custom folder
+        if custom_save_folder:
+            logger.info(f"Using custom save folder: {custom_save_folder}")
+            main_save_path = custom_save_folder / PathBuilder.MAIN_SAVE_FILENAME
+            backup_directory = custom_save_folder / PathBuilder.BACKUP_SUBDIRECTORY
+        else:
+            main_save_path = PathBuilder.build_main_save_path(username)
+            backup_directory = PathBuilder.build_backup_directory_path(username)
+        
         local_backup_directory = Path("./backups")
         
         logger.info(f"Main save path: {main_save_path}")
@@ -37,7 +48,9 @@ class SaveManager:
             username=username,
             main_save_path=main_save_path,
             backup_directory=backup_directory,
-            local_backup_directory=local_backup_directory
+            local_backup_directory=local_backup_directory,
+            custom_save_folder=custom_save_folder,
+            game_executable_path=game_executable_path
         )
         
         # Create PathBuilder and FileOperations instances
@@ -100,6 +113,74 @@ class SaveManager:
             Path to the local backup directory
         """
         return self.config.local_backup_directory
+    
+    def set_custom_save_folder(self, path: Optional[Path]) -> None:
+        """Set custom save folder path and reinitialize paths.
+        
+        Args:
+            path: Path to custom save folder or None to use default
+        """
+        # Save to settings
+        Settings.save_custom_save_folder(path)
+        
+        # Reinitialize paths
+        if path:
+            logger.info(f"Setting custom save folder: {path}")
+            self.config.custom_save_folder = path
+            self.config.main_save_path = path / PathBuilder.MAIN_SAVE_FILENAME
+            self.config.backup_directory = path / PathBuilder.BACKUP_SUBDIRECTORY
+        else:
+            logger.info("Reverting to default save folder")
+            self.config.custom_save_folder = None
+            self.config.main_save_path = PathBuilder.build_main_save_path(self.config.username)
+            self.config.backup_directory = PathBuilder.build_backup_directory_path(self.config.username)
+        
+        logger.info(f"Updated main save path: {self.config.main_save_path}")
+        logger.info(f"Updated backup directory: {self.config.backup_directory}")
+    
+    def set_game_executable_path(self, path: Optional[Path]) -> None:
+        """Set game executable path.
+        
+        Args:
+            path: Path to game executable or None to clear
+        """
+        Settings.save_game_executable_path(path)
+        self.config.game_executable_path = path
+        if path:
+            logger.info(f"Game executable path set to: {path}")
+        else:
+            logger.info("Game executable path cleared")
+    
+    def launch_game(self) -> Result:
+        """Launch the game using the configured executable path.
+        
+        Returns:
+            Result indicating success or error
+        """
+        if not self.config.game_executable_path:
+            logger.warning("Launch game failed: No executable path configured")
+            return Result.error(
+                "Game executable not configured",
+                "Please set the game executable path in Options"
+            )
+        
+        if not self.config.game_executable_path.exists():
+            logger.error(f"Launch game failed: Executable not found at {self.config.game_executable_path}")
+            return Result.error(
+                "Game executable not found",
+                f"File does not exist: {self.config.game_executable_path}"
+            )
+        
+        try:
+            logger.info(f"Launching game: {self.config.game_executable_path}")
+            os.startfile(self.config.game_executable_path)
+            return Result.ok("Game launched successfully")
+        except Exception as e:
+            logger.error(f"Failed to launch game: {e}")
+            return Result.error(
+                "Failed to launch game",
+                str(e)
+            )
     
     def list_backups(self) -> List[BackupInfo]:
         """Scan and return list of available backups, sorted by timestamp descending.

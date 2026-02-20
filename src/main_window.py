@@ -1,13 +1,16 @@
 """MainWindow class for the Scumgenics save manager GUI."""
 import logging
+import os
+import subprocess
 from typing import List, Optional
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QListWidget, 
-    QPushButton, QLabel, QMessageBox
+    QPushButton, QLabel, QMessageBox, QTabWidget, QDialog
 )
 
 from src.save_manager import SaveManager
 from src.backup_info import BackupInfo
+from src.options_dialog import OptionsDialog
 
 logger = logging.getLogger("scumgenics.main_window")
 
@@ -29,32 +32,75 @@ class MainWindow(QMainWindow):
         # Set window title
         self.setWindowTitle("Scumgenics")
         
-        # Create central widget and layout
+        # Create central widget and tab widget
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        layout = QVBoxLayout(central_widget)
+        main_layout = QVBoxLayout(central_widget)
+        
+        # Create tab widget
+        self.tabs = QTabWidget()
+        main_layout.addWidget(self.tabs)
+        
+        # Create Backups tab
+        backups_tab = QWidget()
+        backups_layout = QVBoxLayout(backups_tab)
         
         # Create QListWidget for backup list display
         self.backup_list = QListWidget()
-        layout.addWidget(self.backup_list)
+        backups_layout.addWidget(self.backup_list)
         
         # Create QPushButton for "Restore" (initially disabled)
         self.restore_button = QPushButton("Restore")
         self.restore_button.setEnabled(False)
-        layout.addWidget(self.restore_button)
+        backups_layout.addWidget(self.restore_button)
         
         # Create QPushButton for "Create Local Backup"
-        self.create_backup_button = QPushButton("Create Local Backup")
-        layout.addWidget(self.create_backup_button)
+        self.create_backup_button = QPushButton("Create External Backup")
+        backups_layout.addWidget(self.create_backup_button)
+        
+        # Create QPushButton for "Launch Game"
+        self.launch_game_button = QPushButton("Launch Game")
+        backups_layout.addWidget(self.launch_game_button)
         
         # Create QLabel for status messages
         self.status_label = QLabel("")
-        layout.addWidget(self.status_label)
+        backups_layout.addWidget(self.status_label)
+        
+        self.tabs.addTab(backups_tab, "Backups")
+        
+        # Create Options tab
+        options_tab = QWidget()
+        options_layout = QVBoxLayout(options_tab)
+        
+        # Current path display
+        self.current_path_label = QLabel()
+        self._update_path_label()
+        options_layout.addWidget(self.current_path_label)
+        
+        # Options button
+        self.options_button = QPushButton("Change Save Folder...")
+        self.options_button.clicked.connect(self.on_options_clicked)
+        options_layout.addWidget(self.options_button)
+        
+        # Local backup folder section
+        local_backup_label = QLabel(f"\nLocal Backup Folder:\n{self.save_manager.get_local_backup_directory().absolute()}")
+        options_layout.addWidget(local_backup_label)
+        
+        # Open backup folder button
+        self.open_backup_folder_button = QPushButton("Open Backup Folder")
+        self.open_backup_folder_button.clicked.connect(self.on_open_backup_folder_clicked)
+        options_layout.addWidget(self.open_backup_folder_button)
+        
+        # Add stretch to push everything to the top
+        options_layout.addStretch()
+        
+        self.tabs.addTab(options_tab, "Options")
         
         # Connect signals (will be implemented in subtask 8.6)
         self.backup_list.itemSelectionChanged.connect(self._on_selection_changed)
         self.restore_button.clicked.connect(self.on_restore_clicked)
         self.create_backup_button.clicked.connect(self.on_create_backup_clicked)
+        self.launch_game_button.clicked.connect(self.on_launch_game_clicked)
         
         logger.debug("MainWindow initialization complete")
     
@@ -161,3 +207,65 @@ class MainWindow(QMainWindow):
         """Refresh the backup list display."""
         backups = self.save_manager.list_backups()
         self.display_backups(backups)
+    
+    def _update_path_label(self):
+        """Update the current path label."""
+        if self.save_manager.config.custom_save_folder:
+            path_text = f"Current Save Folder: {self.save_manager.config.custom_save_folder}"
+        else:
+            path_text = f"Current Save Folder: Auto-detected\n{self.save_manager.get_main_save_path().parent}"
+        self.current_path_label.setText(path_text)
+    
+    def on_options_clicked(self):
+        """Handle options button click."""
+        dialog = OptionsDialog(
+            self, 
+            self.save_manager.config.custom_save_folder,
+            self.save_manager.config.game_executable_path
+        )
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            custom_path = dialog.get_custom_path()
+            self.save_manager.set_custom_save_folder(custom_path)
+            self._update_path_label()
+            
+            # Update game executable path
+            game_exe_path = dialog.get_game_exe_path()
+            self.save_manager.set_game_executable_path(game_exe_path)
+            
+            # Refresh backup list with new path
+            self._refresh_backup_list()
+            
+            # Show confirmation
+            if custom_path:
+                self.display_success(f"Save folder updated to:\n{custom_path}")
+            else:
+                self.display_success("Save folder reset to auto-detect")
+    
+    def on_open_backup_folder_clicked(self):
+        """Handle open backup folder button click."""
+        backup_folder = self.save_manager.get_local_backup_directory().absolute()
+        
+        # Ensure the folder exists
+        if not backup_folder.exists():
+            self.display_error(f"Backup folder does not exist:\n{backup_folder}")
+            return
+        
+        try:
+            # Open folder in Windows Explorer
+            os.startfile(backup_folder)
+            logger.info(f"Opened backup folder: {backup_folder}")
+        except Exception as e:
+            logger.error(f"Failed to open backup folder: {e}")
+            self.display_error(f"Failed to open backup folder:\n{str(e)}")
+    
+    def on_launch_game_clicked(self):
+        """Handle launch game button click."""
+        logger.info("User initiated game launch")
+        result = self.save_manager.launch_game()
+        
+        if not result.success:
+            logger.error(f"Game launch failed: {result.message}")
+            error_message = result.message
+            if result.error_details:
+                error_message += f"\n\n{result.error_details}"
+            self.display_error(error_message)

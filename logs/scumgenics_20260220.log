@@ -35,3 +35,216 @@
 2026-02-20 18:08:23 - scumgenics.save_manager - INFO - Total backups found: 18
 2026-02-20 18:08:23 - scumgenics - INFO - Found 18 backup(s)
 2026-02-20 18:08:23 - scumgenics - INFO - Application window displayed
+2026-02-20 18:10:46 - scumgenics - INFO - Logging initialized
+2026-02-20 18:10:46 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:10:46 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:10:46 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:10:46 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:10:46 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:10:46 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:10:46 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:10:46 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:10:46 - scumgenics - INFO - Creating main window
+2026-02-20 18:10:46 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:10:46 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:10:46 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:10:46 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:10:46 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:10:46 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:10:46 - scumgenics.file_operations - DEBUG - Found 0 file(s) matching pattern in backups
+2026-02-20 18:10:46 - scumgenics.save_manager - DEBUG - Found 0 local backup(s) in backups
+2026-02-20 18:10:46 - scumgenics.save_manager - INFO - Total backups found: 18
+2026-02-20 18:10:46 - scumgenics - INFO - Found 18 backup(s)
+2026-02-20 18:10:46 - scumgenics - INFO - Application window displayed
+2026-02-20 18:13:07 - scumgenics.main_window - INFO - User initiated local backup creation
+2026-02-20 18:13:07 - scumgenics.save_manager - INFO - Starting local backup creation
+2026-02-20 18:13:07 - scumgenics.save_manager - DEBUG - Ensuring local backup directory exists: backups
+2026-02-20 18:13:07 - scumgenics.file_operations - DEBUG - Ensuring directory exists: backups
+2026-02-20 18:13:07 - scumgenics.file_operations - INFO - Directory ready: backups
+2026-02-20 18:13:07 - scumgenics.save_manager - INFO - Creating backup: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav -> backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:07 - scumgenics.file_operations - DEBUG - Copying file: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav -> backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:07 - scumgenics.file_operations - INFO - File copied successfully: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav -> backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:07 - scumgenics.save_manager - INFO - Local backup created successfully: backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:07 - scumgenics.main_window - INFO - Local backup creation successful
+2026-02-20 18:13:09 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:13:09 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:09 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:09 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:13:09 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:13:09 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:13:17 - scumgenics.main_window - INFO - User initiated local backup creation
+2026-02-20 18:13:17 - scumgenics.save_manager - INFO - Starting local backup creation
+2026-02-20 18:13:17 - scumgenics.save_manager - DEBUG - Ensuring local backup directory exists: backups
+2026-02-20 18:13:17 - scumgenics.file_operations - DEBUG - Ensuring directory exists: backups
+2026-02-20 18:13:17 - scumgenics.file_operations - INFO - Directory ready: backups
+2026-02-20 18:13:17 - scumgenics.save_manager - INFO - Creating backup: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav -> backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:17 - scumgenics.file_operations - DEBUG - Copying file: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav -> backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:17 - scumgenics.file_operations - INFO - File copied successfully: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav -> backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:17 - scumgenics.save_manager - INFO - Local backup created successfully: backups\steamcampaign01_2026-02-20_18-13.savbackup
+2026-02-20 18:13:17 - scumgenics.main_window - INFO - Local backup creation successful
+2026-02-20 18:13:22 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:13:22 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:22 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:22 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:13:22 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:13:22 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:13:28 - scumgenics - INFO - Logging initialized
+2026-02-20 18:13:28 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:13:28 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:13:28 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:13:28 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:13:28 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:13:28 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:13:28 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:28 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:13:28 - scumgenics - INFO - Creating main window
+2026-02-20 18:13:28 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:13:28 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:13:28 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:13:28 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:13:28 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:28 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:28 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:13:28 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:13:28 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:13:28 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:13:28 - scumgenics - INFO - Application window displayed
+2026-02-20 18:13:40 - scumgenics - INFO - Logging initialized
+2026-02-20 18:13:40 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:13:40 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:13:40 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:13:40 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:13:40 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:13:40 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:13:40 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:40 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:13:40 - scumgenics - INFO - Creating main window
+2026-02-20 18:13:40 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:13:40 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:13:40 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:13:40 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:13:40 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:40 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:13:40 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:13:40 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:13:40 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:13:40 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:13:40 - scumgenics - INFO - Application window displayed
+2026-02-20 18:15:48 - scumgenics - INFO - Logging initialized
+2026-02-20 18:15:48 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:15:48 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:15:48 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:15:48 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:15:48 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:15:48 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:15:48 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:15:48 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:15:48 - scumgenics - INFO - Creating main window
+2026-02-20 18:15:48 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:15:48 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:15:48 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:15:48 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:15:48 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:15:48 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:15:48 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:15:48 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:15:48 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:15:48 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:15:48 - scumgenics - INFO - Application window displayed
+2026-02-20 18:16:12 - scumgenics.main_window - INFO - Opened backup folder: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\backups
+2026-02-20 18:17:06 - scumgenics - INFO - Logging initialized
+2026-02-20 18:17:06 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:17:06 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:17:06 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:17:06 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:17:06 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:17:06 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:17:06 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:17:06 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:17:06 - scumgenics - INFO - Creating main window
+2026-02-20 18:17:06 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:17:06 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:17:06 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:17:06 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:17:06 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:17:06 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:17:06 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:17:06 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:17:06 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:17:06 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:17:06 - scumgenics - INFO - Application window displayed
+2026-02-20 18:20:09 - scumgenics - INFO - Logging initialized
+2026-02-20 18:20:09 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:20:09 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:20:09 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:20:09 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:20:09 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:20:09 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:20:09 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:20:09 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:20:09 - scumgenics - INFO - Creating main window
+2026-02-20 18:20:09 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:20:09 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:20:09 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:20:09 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:20:09 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:20:09 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:20:09 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:20:09 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:20:09 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:20:09 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:20:10 - scumgenics - INFO - Application window displayed
+2026-02-20 18:20:12 - scumgenics.main_window - INFO - User initiated game launch
+2026-02-20 18:20:12 - scumgenics.save_manager - WARNING - Launch game failed: No executable path configured
+2026-02-20 18:20:12 - scumgenics.main_window - ERROR - Game launch failed: Game executable not configured
+2026-02-20 18:20:20 - scumgenics.main_window - INFO - User initiated game launch
+2026-02-20 18:20:20 - scumgenics.save_manager - WARNING - Launch game failed: No executable path configured
+2026-02-20 18:20:20 - scumgenics.main_window - ERROR - Game launch failed: Game executable not configured
+2026-02-20 18:22:31 - scumgenics - INFO - Logging initialized
+2026-02-20 18:22:31 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:22:31 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:22:31 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:22:31 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:22:31 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:22:31 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:22:31 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:22:31 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:22:31 - scumgenics - INFO - Creating main window
+2026-02-20 18:22:31 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:22:31 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:22:31 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:22:31 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:22:31 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:22:31 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:22:31 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:22:31 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:22:31 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:22:31 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:22:31 - scumgenics - INFO - Application window displayed
+2026-02-20 18:22:38 - scumgenics.main_window - INFO - User initiated game launch
+2026-02-20 18:22:38 - scumgenics.save_manager - WARNING - Launch game failed: No executable path configured
+2026-02-20 18:22:38 - scumgenics.main_window - ERROR - Game launch failed: Game executable not configured
+2026-02-20 18:23:59 - scumgenics - INFO - Logging initialized
+2026-02-20 18:23:59 - scumgenics - INFO - Log file: C:\Users\Mitchell\Documents\My_Code\Code_Projects\Scumgenics\logs\scumgenics_20260220.log
+2026-02-20 18:23:59 - scumgenics - INFO - Starting Scumgenics Save Manager
+2026-02-20 18:23:59 - scumgenics - INFO - Initializing SaveManager
+2026-02-20 18:23:59 - scumgenics.save_manager - DEBUG - Username detected from USERPROFILE path: Mitchell
+2026-02-20 18:23:59 - scumgenics.save_manager - INFO - Detected username: Mitchell
+2026-02-20 18:23:59 - scumgenics.save_manager - INFO - Main save path: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\steamcampaign01.sav
+2026-02-20 18:23:59 - scumgenics.save_manager - INFO - Backup directory: C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:23:59 - scumgenics.save_manager - INFO - Local backup directory: backups
+2026-02-20 18:23:59 - scumgenics - INFO - Creating main window
+2026-02-20 18:23:59 - scumgenics.main_window - INFO - Initializing MainWindow
+2026-02-20 18:23:59 - scumgenics.main_window - DEBUG - MainWindow initialization complete
+2026-02-20 18:23:59 - scumgenics - INFO - Loading initial backup list
+2026-02-20 18:23:59 - scumgenics.save_manager - DEBUG - Scanning for backup files
+2026-02-20 18:23:59 - scumgenics.file_operations - DEBUG - Found 18 file(s) matching pattern in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:23:59 - scumgenics.save_manager - DEBUG - Found 18 backup(s) in C:\Users\Mitchell\AppData\Roaming\Glaiel Games\Mewgenics\76561197960287930\saves\backups
+2026-02-20 18:23:59 - scumgenics.file_operations - DEBUG - Found 1 file(s) matching pattern in backups
+2026-02-20 18:23:59 - scumgenics.save_manager - DEBUG - Found 1 local backup(s) in backups
+2026-02-20 18:23:59 - scumgenics.save_manager - INFO - Total backups found: 19
+2026-02-20 18:23:59 - scumgenics - INFO - Found 19 backup(s)
+2026-02-20 18:23:59 - scumgenics - INFO - Application window displayed
+2026-02-20 18:24:04 - scumgenics.main_window - INFO - User initiated game launch
+2026-02-20 18:24:04 - scumgenics.save_manager - WARNING - Launch game failed: No executable path configured
+2026-02-20 18:24:04 - scumgenics.main_window - ERROR - Game launch failed: Game executable not configured
